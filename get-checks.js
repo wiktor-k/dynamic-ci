@@ -1,10 +1,11 @@
 const execSync = require("child_process").execSync;
-// import { execSync } from 'child_process';  // replace ^ if using ES modules
+const fs = require("fs");
 
 const output = execSync("just --summary", { encoding: "utf-8" });
 
-console.log(
-    `::set-output name=matrix::` +
+fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    `matrix=` +
         JSON.stringify({
             check: output.split(" ").filter((c) => c.startsWith("check-")),
         }),
