@@ -5,10 +5,7 @@ const output = execSync("just --summary", { encoding: "utf-8" });
 
 console.log(
     `::set-output name=matrix::` +
-        JSON.stringify(
-            output
-                .split(" ")
-                .filter((c) => c.startsWith("check-"))
-                .map((c) => ({ check: c })),
-        ),
+        JSON.stringify({
+            checks: output.split(" ").filter((c) => c.startsWith("check-")),
+        }),
 );
