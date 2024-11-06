@@ -1,0 +1,29 @@
+name: CI
+
+on: push
+
+jobs:
+  generate-matrix:
+    name: Generate Job Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: taiki-e/install-action@just
+      - run: node ./get-checks.js
+        id: set-matrix
+
+  test:
+    name: Check ${{ matrix.nickname }}
+    runs-on: ubuntu-latest
+    if: needs.generate-matrix.outputs.matrix != ''
+    needs: [generate-matrix]
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix: ${{fromJSON(needs.generate-matrix.outputs.matrix)}}
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo would run just ${{ matrix.check }}
