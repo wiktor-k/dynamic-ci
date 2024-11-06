@@ -15,7 +15,7 @@ jobs:
         id: set-matrix
 
   test:
-    name: Check ${{ matrix.nickname }}
+    name: Run ${{ matrix.check }}
     runs-on: ubuntu-latest
     if: needs.generate-matrix.outputs.matrix != ''
     needs: [generate-matrix]
