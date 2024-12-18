@@ -15,7 +15,7 @@ jobs:
         id: set-matrix
 
   test:
-    name: Run ${{ recipes.doc }}
+    name: Run ${{ matrix.doc }}
     runs-on: ubuntu-latest
     if: needs.generate-matrix.outputs.recipes != ''
     needs: [generate-matrix]
