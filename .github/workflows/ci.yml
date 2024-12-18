@@ -15,7 +15,7 @@ jobs:
         id: set-matrix
 
   test:
-    name: Run ${{ matrix.doc }}
+    name: Run ${{ matrix.recipes.doc }}
     runs-on: ubuntu-latest
     needs: [generate-matrix]
     strategy:
@@ -25,4 +25,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: echo would run just ${{ matrix.name }}
+      - run: echo would run just ${{ matrix.recipes.name }}
