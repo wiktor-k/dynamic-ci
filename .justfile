@@ -14,19 +14,19 @@ set dotenv-load := true
 # Perform all checks
 check: check-spelling check-formatting check-docs check-lints check-dependencies check-tests
 
-# Checks common spelling mistakes
+# Check common spelling mistakes
 [group('ci')]
 check-spelling:
     codespell
 
-# Checks source code formatting
+# Check source code formatting
 [group('ci')]
 check-formatting:
     just --unstable --fmt --check
     # We're using nightly to properly group imports, see .rustfmt.toml
     cargo +nightly fmt --all -- --check
 
-# Lints the source code
+# Lint the source code
 [group('ci')]
 check-lints:
     cargo clippy --workspace --no-deps --all-targets -- -D warnings
