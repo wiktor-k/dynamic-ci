@@ -14,8 +14,8 @@ jobs:
       - run: node ./get-checks.js
         id: set-matrix
 
-  test:
-    name: Run ${{ matrix.recipes.doc }}
+  run-task:
+    name: ${{ matrix.recipes.doc }}
     runs-on: ubuntu-latest
     needs: [generate-matrix]
     strategy:
