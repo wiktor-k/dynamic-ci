@@ -7,7 +7,7 @@ jobs:
     name: Generate Job Matrix
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      recipes: ${{ steps.set-matrix.outputs.recipes }}
     steps:
       - uses: actions/checkout@v4
       - uses: taiki-e/install-action@just
@@ -15,14 +15,14 @@ jobs:
         id: set-matrix
 
   test:
-    name: Run ${{ matrix.doc }}
+    name: Run ${{ recipes.doc }}
     runs-on: ubuntu-latest
-    if: needs.generate-matrix.outputs.matrix != ''
+    if: needs.generate-matrix.outputs.recipes != ''
     needs: [generate-matrix]
     strategy:
       fail-fast: false
       max-parallel: 6
-      matrix: ${{fromJSON(needs.generate-matrix.outputs.matrix)}}
+      matrix: ${{fromJSON(needs.generate-matrix.outputs.recipes)}}
 
     steps:
       - uses: actions/checkout@v4
