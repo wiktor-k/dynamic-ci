@@ -15,7 +15,7 @@ jobs:
         id: set-matrix
 
   test:
-    name: Run ${{ matrix.check }}
+    name: Run ${{ matrix.doc }}
     runs-on: ubuntu-latest
     if: needs.generate-matrix.outputs.matrix != ''
     needs: [generate-matrix]
@@ -26,4 +26,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: echo would run just ${{ matrix.check }}
+      - run: echo would run just ${{ matrix.name }}
