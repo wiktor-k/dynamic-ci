@@ -17,7 +17,6 @@ jobs:
   test:
     name: Run ${{ matrix.doc }}
     runs-on: ubuntu-latest
-    if: needs.generate-matrix.outputs.recipes != ''
     needs: [generate-matrix]
     strategy:
       fail-fast: false

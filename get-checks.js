@@ -12,5 +12,5 @@ const recipes = Object.values(justfile.recipes).filter((recipe) =>
 );
 fs.appendFileSync(
     process.env.GITHUB_OUTPUT,
-    `matrix=` + JSON.stringify({ recipes }),
+    `recipes=` + JSON.stringify({ recipes }),
 );
