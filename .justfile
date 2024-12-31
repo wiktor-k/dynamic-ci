@@ -1,6 +1,5 @@
 #!/usr/bin/env -S just --working-directory . --justfile
 
-# is ok
 mod docker
 
 # Load project-specific properties from the `.env` file
