@@ -1,7 +1,4 @@
 #!/usr/bin/env -S just --working-directory . --justfile
-
-mod docker
-
 # Load project-specific properties from the `.env` file
 
 set dotenv-load := true

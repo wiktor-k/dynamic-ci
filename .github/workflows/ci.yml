@@ -25,4 +25,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: echo would run just ${{ matrix.recipes.name }}
+      - run: echo would run just --justfile ${{ matrix.recipes.file }} ${{ matrix.recipes.name }}
